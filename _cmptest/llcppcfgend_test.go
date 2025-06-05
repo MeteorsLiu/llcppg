@@ -107,14 +107,13 @@ func TestEnd2EndLLCppcfg(t *testing.T) {
 			pcFileName := actualPcFiles[0]
 
 			cmd := exec.Command("llcppcfg", pcFileName)
-			cmd.Env = os.Environ()
 			cmd.Env = append(cmd.Env, pcPathEnv(conanDir)...)
 			cmd.Stderr = os.Stderr
 			cmd.Stdout = os.Stdout
 
 			platformCfgDir := filepath.Join(tc.cfgDir, runtime.GOOS, tc.pkg.Version)
 
-			gen := false
+			gen := true
 			// generate config only
 			if gen {
 				os.MkdirAll(platformCfgDir, 0700)
